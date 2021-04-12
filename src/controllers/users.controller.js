@@ -13,10 +13,24 @@ module.exports = {
 
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.messages);
     }
   },
+  create: async (req, res) =>{
+    try {
+      const { name, email, password, isAdmin } = req.body;
+      console.log({ name, email, password, isAdmin });
+      const response = await usersService.create({ name, email, password, isAdmin });
+      
+      return res.status(StatusCodes.OK).json(response);
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
+        .json(error.messages);
+    }
+  }
 };

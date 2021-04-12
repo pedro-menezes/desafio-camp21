@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     // Product belongsToMany Tag
     return queryInterface.createTable(
-      'votes',
+      'associate-genre-movie',
       {
         createdAt: {
           allowNull: false,
@@ -14,25 +14,20 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE,
         },
-        userId: {
-          allowNull: false,
+        genreId: {
           type: Sequelize.UUID,
           primaryKey: true,
         },
         movieId: {
-          allowNull: false,
           type: Sequelize.UUID,
           primaryKey: true,
         },
-        note: {
-          type: Sequelize.INTEGER
-        }
       }
     );
   },
 
   down: (queryInterface, Sequelize) => {
     // remove table
-    return queryInterface.dropTable('votes');
+    return queryInterface.dropTable('associate-genre-movie');
   },
 };

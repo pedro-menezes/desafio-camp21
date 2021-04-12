@@ -23,7 +23,9 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Movie.associate = models => {
-    Movie.belongsToMany(models.User, {trough: 'UserTags'});
+    Movie.belongsToMany(models.User, { through: 'vote'});
+    Movie.belongsToMany(models.Actor, { through: 'associate-actor-movie'});
+    Movie.belongsToMany(models.Genre, { through: 'associate-genre-movie'});
   };
 
   return Movie;

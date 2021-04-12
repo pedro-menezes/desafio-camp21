@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         field: "updated_at",
       },
+      deleted_at: {
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: "users",
@@ -39,9 +42,9 @@ module.exports = (sequelize, DataTypes) => {
       Object.entries(user).filter(([key]) => !["password"].includes(key))
     );
   };
-
+  
   User.associate = models => {
-    User.belongsToMany(models.Movie, {trough: 'MovieTags'});
+    User.belongsToMany(models.Movie, { through: 'vote'});
   };
 
   return User;

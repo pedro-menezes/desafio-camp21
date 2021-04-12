@@ -32,5 +32,5 @@ module.exports.signin = async (email, password) => {
   const sign = promisify(jwt.sign);
   const token = await sign(payload, constants.jwtToken);
 
-  return { email, token };
+  return { email, isAdmin: user.isAdmin, token };
 };

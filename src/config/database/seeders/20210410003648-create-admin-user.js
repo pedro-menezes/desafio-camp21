@@ -11,6 +11,7 @@ module.exports = {
         is_admin: true,
         created_at: new Date(),
         updated_at: new Date(),
+        delete_at: null,
       },
     ]);
   },
