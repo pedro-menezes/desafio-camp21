@@ -18,13 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: {
         type: DataTypes.DATE,
         field: "updated_at",
-      },
-      deleted_at: {
-        type: DataTypes.DATE,
-      },
+      }
     },
     {
       tableName: "users",
+      paranoid: true,
+      deletedAt: "deleted_at",
     }
   );
 

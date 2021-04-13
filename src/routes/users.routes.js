@@ -6,4 +6,6 @@ router.use(isAuthorized);
 
 router.get("/", usersController.list);
 router.post("/", usersController.create);
+router.delete("/", usersController.destroy);
+router.put("/", usersController.update);
 module.exports.users = router;
