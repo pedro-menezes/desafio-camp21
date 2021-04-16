@@ -6,6 +6,12 @@ module.exports = {
     return queryInterface.createTable(
       'associate-actor-movie',
       {
+        id: {
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: Sequelize.INTEGER
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
@@ -15,12 +21,18 @@ module.exports = {
           type: Sequelize.DATE,
         },
         actorId: {
-          type: Sequelize.UUID,
-          primaryKey: true,
+          allowNull: false,
+          type: Sequelize.INTEGER,
+          references: { model: 'actors', key: 'id'},
+          onDelete: 'CASCADE',
+          allowNull: false,
         },
-        actorId: {
-          type: Sequelize.UUID,
-          primaryKey: true,
+        movieId: {
+          allowNull: false,
+          type: Sequelize.INTEGER,
+          references: { model: 'movies', key: 'id'},
+          onDelete: 'CASCADE',
+          allowNull: false,
         },
       }
     );

@@ -6,6 +6,12 @@ module.exports = {
     return queryInterface.createTable(
       'associate-genre-movie',
       {
+        id: {
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: Sequelize.INTEGER
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
@@ -15,12 +21,18 @@ module.exports = {
           type: Sequelize.DATE,
         },
         genreId: {
-          type: Sequelize.UUID,
-          primaryKey: true,
+          allowNull: false,
+          type: Sequelize.INTEGER,
+          references: { model: 'genres', key: 'id'},
+          onDelete: 'CASCADE',
+          allowNull: false,
         },
         movieId: {
-          type: Sequelize.UUID,
-          primaryKey: true,
+          allowNull: false,
+          type: Sequelize.INTEGER,
+          references: { model: 'movies', key: 'id'},
+          onDelete: 'CASCADE',
+          allowNull: false,
         },
       }
     );

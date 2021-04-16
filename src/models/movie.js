@@ -16,16 +16,35 @@ module.exports = (sequelize, DataTypes) => {
   Movie.init({
     title: DataTypes.STRING,
     duration: DataTypes.INTEGER,
-    rating: DataTypes.INTEGER
+    director_name: DataTypes.STRING
   }, {
     sequelize,
+    tableName: "movies",
     modelName: 'Movie',
   });
 
+  Movie.prototype.toJSON = function () {
+    const movie = { ...this.get() };
+    return Object.fromEntries(Object.entries(movie));
+  };
+
   Movie.associate = models => {
-    Movie.belongsToMany(models.User, { through: 'vote'});
-    Movie.belongsToMany(models.Actor, { through: 'associate-actor-movie'});
-    Movie.belongsToMany(models.Genre, { through: 'associate-genre-movie'});
+    Movie.belongsToMany(models.User, { 
+      through: 'votes',
+      foreignKey: 'movieId',
+    });
+
+    Movie.belongsToMany(models.Actor, { 
+      through: 'associate-actor-movie',
+      as: 'actors',
+      foreignKey: 'movieId',
+    });
+
+    Movie.belongsToMany(models.Genre, { 
+      through: 'associate-genre-movie',
+      as: 'genres',
+      foreignKey: 'movieId',
+    });
   };
 
   return Movie;
