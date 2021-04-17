@@ -3,6 +3,7 @@ const { users } = require("./users.routes");
 const { movies } = require("./movies.routes");
 const { votes } = require("./votes.routes");
 const { genres } = require("./genres.routes");
+const { actors } = require("./actors.routes");
 
 module.exports = {
   auth,
@@ -10,4 +11,5 @@ module.exports = {
   movies,
   votes,
   genres,
+  actors,
 };

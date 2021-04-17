@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   Movie.associate = models => {
     Movie.belongsToMany(models.User, { 
       through: 'votes',
+      as: 'users',
       foreignKey: 'movieId',
     });
 
