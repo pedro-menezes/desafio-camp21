@@ -2,6 +2,7 @@ const { moviesRepository } = require("../../repositories");
 
 module.exports.list = async (options) => {
   const query = {};
+  query.where = 0;
 
   if (options.title && options.title !== "") {
     query.where = { title: options.title };
@@ -18,8 +19,7 @@ module.exports.list = async (options) => {
   if (options.director && options.director !== "") {
     query.where = { ...query.where, director: options.director };
   };
-  
-  console.log(options);
+
   const { rows } = await moviesRepository.list(query);
   return {
     movies: rows,
